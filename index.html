@@ -1,0 +1,388 @@
+<meta charset="utf-8">
+<title>Snack Box in Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Inter:wght@600&family=Fredoka:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="app.css">
+<style>
+  /* Layout: two live phones side by side (stacked on narrow screens), each with its motion notes underneath. */
+  :root {
+    --page: #EEF2F6;
+    --ink: #13233A;
+    --ink-2: #4E5E73;
+    --line: #D6DEE8;
+    --panel: #FFFFFF;
+    --accent: #146EB8;
+    --chip: #E3EEF9;
+    --font: "Figtree", ui-rounded, system-ui, -apple-system, sans-serif;
+    --z: min(0.8, calc((100vw - 32px) / 426px));
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --page: #0F1620; --ink: #E7EEF6; --ink-2: #9FB0C4; --line: #253244; --panel: #172231; --accent: #6AB4F2; --chip: #1C2C40; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --page: #0F1620; --ink: #E7EEF6; --ink-2: #9FB0C4; --line: #253244; --panel: #172231; --accent: #6AB4F2; --chip: #1C2C40; color-scheme: dark; }
+
+  html, body { background: var(--page); }
+  body { margin: 0; color: var(--ink); font: 400 16px/1.5 var(--font); padding-inline: 16px; padding-block: 40px 64px; }
+  .wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+
+  .intro { max-width: 640px; display: flex; flex-direction: column; gap: 12px; }
+  .eyebrow { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+  .intro h1 { margin: 0; font-size: clamp(30px, 4.6vw, 44px); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
+  .intro p { margin: 0; font-size: 17px; color: var(--ink-2); text-wrap: pretty; }
+
+  .demos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 48px 32px; align-items: start; }
+  .demo { display: flex; flex-direction: column; align-items: center; gap: 20px; min-width: 0; }
+
+  /* Phone shell, matching the app's own frame. */
+  .device {
+    position: relative;
+    width: 426px;
+    padding: 10px;
+    border: 2px solid #62666D;
+    border-radius: 48px;
+    background: #181A1E;
+    box-shadow: 0 24px 60px #17202F33, inset 0 0 0 2px #30343B;
+    zoom: var(--z);
+    flex: none;
+  }
+  .device .phone-display { position: relative; isolation: isolate; }
+  .device .phone-display > main { position: absolute; top: 0; left: 0; }
+
+  .controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .controls button {
+    height: 36px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 999px;
+    background: var(--panel); color: var(--ink); font: 600 14px var(--font); cursor: pointer;
+  }
+  .controls button[aria-current="true"] { background: var(--ink); border-color: var(--ink); color: var(--page); }
+  .controls button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .notes { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; }
+  .notes h2 { margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .notes > p { margin: 0; color: var(--ink-2); text-wrap: pretty; }
+  .notes dl { margin: 0; display: grid; grid-template-columns: 104px 1fr; gap: 10px 14px; padding: 16px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); }
+  .notes dt { font-weight: 700; font-size: 14px; }
+  .notes dd { margin: 0; font-size: 14px; color: var(--ink-2); text-wrap: pretty; }
+  .notes .try { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .notes .try b { color: var(--ink); }
+
+  footer { color: var(--ink-2); font-size: 14px; max-width: 640px; }
+
+  /* ---------- onboarding motion ---------- */
+  .phone-display > main.leave { animation: ob-leave 0.28s ease-in forwards; z-index: 0; }
+  .phone-display > main.arrive { z-index: 1; animation: ob-arrive 0.3s ease-out; }
+  @keyframes ob-leave { to { opacity: 0; transform: translateX(calc(var(--dir, 1) * -36px)); } }
+  @keyframes ob-arrive { from { opacity: 0; } }
+  main.arrive :is(h1, .location-copy, .meal-description, .child-form, .location-form, .meal-card, .meal-subscribe, .plan-options, .plan-checkout, .child-header, .location-header, .meal-header, .plan-header) {
+    animation: ob-rise 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards;
+  }
+  main.arrive :is(.child-header, .location-header, .meal-header, .plan-header) { animation-delay: 0.05s; }
+  main.arrive h1, main.arrive .location-copy { animation-delay: 0.22s; }
+  main.arrive .meal-description { animation-delay: 0.3s; }
+  main.arrive :is(.child-form, .location-form, .meal-card, .plan-options) { animation-delay: 0.36s; }
+  main.arrive :is(.meal-subscribe, .plan-checkout) { animation-delay: 0.46s; }
+  @keyframes ob-rise { from { opacity: 0; transform: translateY(22px); } }
+  .location-error { margin: 6px 8px 0; color: #B30C00; font-size: 13px; font-weight: 600; }
+
+  /* ---------- 3D box inside the app's "Box for tomorrow" hero ---------- */
+  .box-hero-copy { pointer-events: none; transition: opacity 0.3s ease; }
+  .box-hero.exploring .box-hero-copy { opacity: 0; }
+  .box-3d { position: absolute; inset: 0; touch-action: none; cursor: grab; }
+  .box-3d:active { cursor: grabbing; }
+  .box-3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  /* The open lid fades out under the hero text, the way the photo sat below it. */
+  .box-3d::after { content: ""; position: absolute; inset: 0 0 auto; height: 58%; pointer-events: none; background: linear-gradient(#D7EEFE 0 58%, #D7EEFE00); transition: opacity 0.3s ease; }
+  .box-hero.exploring .box-3d::after { opacity: 0; }
+  /* Count tags: sit right on each compartment once its food pops in. */
+  .tb-tags { position: absolute; inset: 0; z-index: 2; pointer-events: none; transition: opacity 0.25s; }
+  .tb-tags.hidden { opacity: 0; }
+  .tb-tags.hidden .tag { pointer-events: none; }
+  .tag {
+    position: absolute; left: 0; top: 0; translate: -50% -50%; display: flex; flex-direction: column; align-items: center;
+    padding: 4px 8px 5px; border: 1px solid #0058D133; border-radius: 12px; background: #FFFFFF; color: #0058D1;
+    box-shadow: 0 2px 8px #0C426E2E; font-family: 'Figtree', sans-serif; cursor: pointer; pointer-events: auto;
+    opacity: 0; scale: 0.3; transition: opacity 0.2s, scale 0.5s cubic-bezier(0.3, 1.7, 0.5, 1);
+  }
+  .tag.in { opacity: 1; scale: 1; }
+  .tag b { font-size: 14px; font-weight: 800; line-height: 1; }
+  .tag span { margin-top: 2px; font-size: 9px; font-weight: 700; line-height: 1.1; color: #586E8A; white-space: nowrap; }
+  .tag:hover { background: #F2F8FF; }
+  .tag:focus-visible { outline: 2px solid #0058D1; outline-offset: 2px; }
+
+  /* "Tap to open" bubble, floating above the closed lid. */
+  .tb-open {
+    position: absolute; left: 50%; top: 50%; z-index: 3; translate: -50% calc(-100% - 10px); transform-origin: 50% 100%;
+    padding: 8px 14px; border: 0; border-radius: 999px; background: #0058D1; color: #FFFFFF; box-shadow: 0 6px 16px #0058D14D;
+    font: 700 13px/1 'Figtree', sans-serif; white-space: nowrap; cursor: pointer;
+    opacity: 0; scale: 0.4; pointer-events: none; transition: opacity 0.25s, scale 0.45s cubic-bezier(0.3, 1.7, 0.5, 1);
+  }
+  .tb-open::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 10px; height: 10px; margin-left: -5px; border-radius: 2px; background: inherit; rotate: 45deg; }
+  .tb-open.in { opacity: 1; scale: 1; pointer-events: auto; animation: cta-bob 1.6s ease-in-out infinite; }
+  .tb-open.in.nudge { animation: cta-nudge 0.55s, cta-bob 1.6s 0.55s ease-in-out infinite; }
+  .tb-open:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 2px; }
+  @keyframes cta-bob { 50% { translate: -50% calc(-100% - 15px); } }
+  @keyframes cta-nudge { 20% { rotate: -8deg; scale: 1.08; } 40% { rotate: 7deg; } 60% { rotate: -5deg; } 80% { rotate: 3deg; } }
+
+  /* Focus card: how much is in the compartment and what it's made of. */
+  .tb-card {
+    position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 3; display: flex; flex-direction: column; gap: 6px;
+    padding: 12px 12px 12px 14px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 8px 24px #0C426E29; font-family: 'Figtree', sans-serif;
+    translate: 0 calc(100% + 16px); visibility: hidden; transition: translate 0.45s cubic-bezier(0.3, 1.2, 0.5, 1), visibility 0s 0.45s;
+  }
+  .tb-card.show { translate: 0 0; visibility: visible; transition: translate 0.45s cubic-bezier(0.3, 1.2, 0.5, 1); }
+  .tb-card header { display: flex; align-items: center; gap: 6px; }
+  .tb-card-title { flex: 1; min-width: 0; margin: 0; color: #0058D1; font-size: 17px; font-weight: 800; line-height: 1.15; }
+  .tb-card-note { margin: -2px 0 2px; color: #586E8A; font-size: 12px; font-weight: 500; line-height: 1.3; }
+  .tb-card-step { color: #8A97A8; font-size: 11px; font-weight: 600; white-space: nowrap; align-self: center; }
+  .tb-card header button {
+    flex: none; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: #EEF5FC; color: #0058D1;
+    font: 700 16px/1 'Figtree', sans-serif; cursor: pointer; display: grid; place-items: center;
+  }
+  .tb-card header button:focus-visible { outline: 2px solid #0058D1; outline-offset: 2px; }
+  .tb-card-made { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .tb-card-made::before { content: "Made with"; margin-right: 2px; color: #616E80; font-size: 11px; font-weight: 600; }
+  .tb-card-made li { display: flex; align-items: center; gap: 6px; padding: 3px 10px 3px 4px; border-radius: 999px; background: #F6F7F9; color: #2E2E2E; font-size: 12px; font-weight: 500; }
+  .tb-card .ingredient-icon { width: 20px; height: 20px; }
+
+  .tb-hint {
+    position: absolute; left: 50%; bottom: 10px; translate: -50% 0; z-index: 2; margin: 0; padding: 5px 10px; border-radius: 999px;
+    background: #FFFFFFE6; color: #0058D1; font: 700 11px/1.2 'Figtree', sans-serif; white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .box-hero.opened .tb-hint { opacity: 1; animation: hint-in 0.5s 2.9s backwards, hint-out 0.5s 9s forwards; }
+  .box-hero.exploring .tb-hint, .box-3d.touched ~ .tb-hint { opacity: 0; }
+  @keyframes hint-in { from { opacity: 0; translate: -50% 6px; } }
+  @keyframes hint-out { to { opacity: 0; } }
+  /* Ingredients below can be tapped to find them in the box. Looks the same. */
+  .box-ingredients li[role="button"] { cursor: pointer; }
+  .tb-reset {
+    position: absolute; right: 10px; top: 10px; z-index: 3; height: 30px; padding: 0 12px; border: 1px solid #0058D133; border-radius: 999px;
+    background: #FFFFFF; color: #0058D1; font: 700 12px 'Figtree', sans-serif; cursor: pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main.arrive *, .phone-display > main.leave, .phone-display > main.arrive { animation: none !important; }
+    .tag, .tb-open, .tb-card { transition: none; }
+    .tb-open.in { animation: none; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <p class="eyebrow">Toddlers’ Snack Box · motion study</p>
+    <h1>Characters that breathe, and a box that opens itself</h1>
+    <p>Two screens from the app with motion added. Both are live, so try them: type a name, enter a PIN, open the box.</p>
+  </header>
+
+  <div class="demos">
+    <!-- ================= onboarding ================= -->
+    <section class="demo" aria-labelledby="ob-h">
+      <div class="device"><div class="phone-display" id="ob-display">
+
+        <main class="child-screen" data-screen="child" aria-labelledby="child-title">
+          <div class="status-bar" aria-hidden="true"><span>9:41</span><img alt="" width="66.661" height="11.336" src="assets/status-dark.svg"></div>
+          <header class="child-header"><button class="setup-back" type="button" aria-label="Back to previous step"><img alt="" src="assets/box-123e4.svg">Back</button><button type="button" data-skip>skip.</button></header>
+          <div class="child-art" aria-hidden="true">
+            <img class="child-body" alt="" src="assets/child-body.svg"><img class="child-cheek left" alt="" src="assets/child-cheek.svg"><img class="child-cheek right" alt="" src="assets/child-cheek.svg"><img class="child-eye left" alt="" src="assets/child-eye-left.svg"><img class="child-eye right" alt="" src="assets/child-eye-right.svg"><div class="child-mouth-position"><div class="child-mouth-rotation"><img alt="" src="assets/child-mouth.svg"></div></div>
+          </div>
+          <h1 id="child-title">Tell us about your<br>little one</h1>
+          <form class="child-form" novalidate>
+            <div class="child-fields">
+              <div class="child-field"><label for="child-name">What’s your baby’s name?</label><input id="child-name" class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base outline-none" placeholder="Arav" maxlength="80" autocomplete="off"></div>
+              <div class="child-field"><label for="child-birthday">Date of Birth</label><div class="child-date-control"><input id="child-birthday" class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base outline-none" placeholder="01/ 11 / 2025" inputmode="numeric" maxlength="14" autocomplete="off"><div class="birthday-picker"><div class="birthday-icon"><img alt="" src="assets/birthday-cake.png"></div></div></div></div>
+              <fieldset class="child-gender"><legend>Gender <span>(optional)</span></legend><div><label><input type="radio" value="boy" name="ob-gender" id="ob-boy"><span>Boy</span></label><label><input type="radio" value="girl" name="ob-gender" id="ob-girl"><span>Girl</span></label></div></fieldset>
+            </div>
+            <div class="child-actions">
+              <button type="button" class="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap select-none bg-primary text-primary-foreground h-8 gap-1.5 px-2.5 child-add">One more kiddo to add</button>
+              <button type="submit" class="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap select-none bg-primary text-primary-foreground h-8 gap-1.5 px-2.5 child-next">Next</button>
+            </div>
+          </form>
+        </main>
+
+        <main class="location-screen" data-screen="location" aria-labelledby="location-title" hidden>
+          <div class="status-bar" aria-hidden="true"><span>9:41</span><img alt="" width="66.661" height="11.336" src="assets/status-dark.svg"></div>
+          <header class="location-header"><button class="setup-back" type="button" aria-label="Back to previous step"><img alt="" src="assets/box-123e4.svg">Back</button><button type="button" data-skip>skip.</button></header>
+          <div class="location-art" aria-hidden="true">
+            <img class="location-body" alt="" src="assets/location-body.svg"><img class="location-cheek left" alt="" src="assets/location-cheek-left.svg"><img class="location-cheek right" alt="" src="assets/location-cheek-right.svg"><img class="location-eye left" alt="" src="assets/location-eye-left.svg"><img class="location-eye right" alt="" src="assets/location-eye-right.svg"><img class="location-mouth" alt="" src="assets/location-mouth.svg">
+          </div>
+          <div class="location-copy"><h1 id="location-title">Where do you live?</h1><p>So we can check if we deliver to your area.</p></div>
+          <form class="location-form" novalidate>
+            <div class="location-field"><label for="pin-code">Enter your pin code</label><input id="pin-code" class="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base outline-none" inputmode="numeric" maxlength="6" placeholder="380061" autocomplete="off"></div>
+            <p class="location-notice" role="status"></p>
+            <button type="submit" class="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap select-none bg-primary text-primary-foreground h-8 gap-1.5 px-2.5 location-next">Next</button>
+          </form>
+        </main>
+
+        <main class="meal-screen" data-screen="meal" aria-labelledby="meal-title" hidden>
+          <div class="status-bar" aria-hidden="true"><span>9:41</span><img alt="" width="66.661" height="11.336" src="assets/status-dark.svg"></div>
+          <header class="meal-header"><button class="setup-back" type="button" aria-label="Back to previous step"><img alt="" src="assets/box-123e4.svg">Back</button><button type="button" data-skip>skip.</button></header>
+          <div class="meal-character" aria-hidden="true">
+            <img class="meal-body" alt="" src="assets/meal-body.svg"><img class="meal-cheek left" alt="" src="assets/meal-cheek-left.svg"><img class="meal-cheek right" alt="" src="assets/meal-cheek-right.svg"><div class="meal-mouth-position"><div class="meal-mouth-rotation"><img alt="" src="assets/meal-mouth.svg"></div></div><img class="meal-eye left" alt="" src="assets/meal-eye-left.svg"><img class="meal-eye right" alt="" src="assets/meal-eye-right.svg">
+          </div>
+          <h1 id="meal-title">Here's what <span data-name>Aarav</span><br>gets tomorrow</h1>
+          <p class="meal-description">Sample meal preview. Covers roughly <strong>50%</strong> of <span data-name>Aarav</span>'s daily protein &amp; nutrition need</p>
+          <article class="meal-card" aria-labelledby="meal-name">
+            <h2 id="meal-name">Moong Dal &amp;<br>Paneer Mini Idlis</h2>
+            <p>Soft steamed lentil and paneer bites, served with mashed banana.</p>
+            <img class="meal-box" alt="Snack box with mini idlis and mashed banana" width="306" height="306" src="assets/meal-box.png">
+            <ul aria-label="Ingredients"><li>Moong Dal</li><li>Paneer</li><li>Grated carrot</li><li>Ghee</li><li>Banana</li></ul>
+          </article>
+          <button type="button" class="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap select-none bg-primary text-primary-foreground h-8 gap-1.5 px-2.5 meal-subscribe">Subscribe to get this delivered</button>
+          <p class="meal-notice" role="status"></p>
+        </main>
+
+        <main class="plan-screen" data-screen="plan" aria-labelledby="plan-title" hidden>
+          <div class="status-bar" aria-hidden="true"><span>9:41</span><img alt="" width="66.661" height="11.336" src="assets/status-dark.svg"></div>
+          <header class="plan-header"><button class="setup-back" type="button" aria-label="Back to previous step"><img alt="" src="assets/box-123e4.svg">Back</button><button type="button" data-skip>skip.</button></header>
+          <div class="plan-character" aria-hidden="true">
+            <img class="plan-body" alt="" src="assets/plan-body.svg"><img class="plan-cheek left" alt="" src="assets/plan-cheek.svg"><img class="plan-cheek right" alt="" src="assets/plan-cheek.svg"><img class="plan-eye left" alt="" src="assets/plan-eye-left.svg"><img class="plan-eye right" alt="" src="assets/plan-eye-right.svg"><div class="plan-mouth-position"><div class="plan-mouth-rotation"><img alt="" src="assets/plan-mouth.svg"></div></div>
+          </div>
+          <h1 id="plan-title">Choose your Plan</h1>
+          <div class="plan-options" role="radiogroup" aria-label="Subscription plan">
+            <label class="plan-option selected"><input type="radio" value="monthly" checked name="ob-plan" id="ob-monthly"><span class="plan-copy"><span class="plan-name">Monthly</span><span class="plan-description">Get a box delivered everyday for a month. (5 days a week)</span></span><span class="plan-price"><del>₹ 4,499</del><strong>₹3,999</strong></span></label>
+            <label class="plan-option"><input type="radio" value="weekly" name="ob-plan" id="ob-weekly"><span class="plan-copy"><span class="plan-name">Weekly</span><span class="plan-description">Get a box delivered everyday for a week. (5 days a week)</span></span><span class="plan-price"><strong>₹999</strong></span></label>
+            <section class="plan-deposit" aria-labelledby="deposit-title"><h2 id="deposit-title">Returnable amount</h2><p><strong>₹999</strong> of this plan is a deposit. Only a portion of this deposit is refundable, based on the boxes you return clean. The full deposit is not refundable.</p></section>
+          </div>
+          <button type="button" class="inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap select-none bg-primary text-primary-foreground h-8 gap-1.5 px-2.5 plan-checkout">Explore my boxes</button>
+          <p class="plan-notice" role="status">Preview only. No payment is collected.</p>
+        </main>
+
+      </div></div>
+
+      <div class="controls" id="ob-steps" aria-label="Onboarding screens">
+        <button type="button" data-go="child" aria-current="true">Child</button>
+        <button type="button" data-go="location" aria-current="false">Location</button>
+        <button type="button" data-go="meal" aria-current="false">Meal</button>
+        <button type="button" data-go="plan" aria-current="false">Plan</button>
+        <button type="button" data-replay>Replay entrance</button>
+      </div>
+
+      <div class="notes">
+        <h2 id="ob-h">Onboarding characters</h2>
+        <p>Built from the character parts already in the app (body, eyes, cheeks, mouth). No new artwork.</p>
+        <dl>
+          <dt>Entrance</dt><dd>The character rises in with a little squash, then opens its eyes. The text follows a beat later.</dd>
+          <dt>Breathing</dt><dd>A slow swell every few seconds, so the screen is never quite still.</dd>
+          <dt>Blinking</dt><dd>At random moments, sometimes twice.</dd>
+          <dt>Looking</dt><dd>Pupils follow your cursor or finger. While you type, it watches the text appear. When nothing happens, it glances around.</dd>
+          <dt>Expressions</dt><dd>The face changes with what you do. A curious “o” when a field is empty, a smile and blush once there’s a name, a grin with happy ^ ^ eyes on Next. A wrong PIN gets a frown and droopy lids until you fix it. The meal character licks its lips at the food. Leave it alone and it dozes off; move and it wakes with a start.</dd>
+          <dt>Reactions</dt><dd>Tap it: squish, surprise, then a giggle. Typing makes it chatter. A full PIN gets a happy hop, a wrong one a head shake. Monthly gets a bigger grin than weekly.</dd>
+        </dl>
+        <p class="try"><b>Try:</b> type a name, then press Next. On Location, press Next with a short PIN. Or stop moving for 15 seconds.</p>
+      </div>
+    </section>
+
+    <!-- ================= tomorrow's box ================= -->
+    <section class="demo" aria-labelledby="tb-h">
+      <div class="device"><div class="phone-display">
+        <main class="box-screen" aria-label="Tomorrow’s box details"><div class="status-bar" aria-hidden="true"><span>8:45</span><img alt="" width="66.661" height="11.336" src="assets/status-dark.svg"></div><header class="box-header"><button aria-label="Back to previous screen"><img alt="" src="assets/box-123e4.svg"></button><div><h1><span data-name>Aarav</span>’s Box for tomorrow</h1><p>Thursday, Oct 24 <img alt="" src="assets/box-312ca.svg">9 AM Drop</p></div><button aria-label="Box options"><img alt="" src="assets/box-74b47.svg"></button></header><div class="box-scroll"><div class="box-child-selector"><div class="child-switcher-wrap"><button class="child-switcher" type="button" aria-expanded="false" aria-label="Switch child, currently Aarav" disabled=""><span class="child-avatar child-color-0" aria-hidden="true">A</span><span class="child-switcher-label"><span class="child-for">Viewing box for</span><span class="child-switcher-name" data-name>Aarav</span></span><span class="child-switch-action">1 child </span></button></div></div>
+          <section class="box-hero" id="tb-hero"><div class="box-hero-copy"><h2>Moong Dal &amp; Paneer Mini Idlis</h2><p>Soft steamed lentil and paneer bites, served with mashed banana.</p><div><span>30% Daily Nutrition</span><span>40% Daily Protein</span></div></div>
+            <div class="box-3d" id="tb-stage"><canvas id="tb-canvas" role="img" aria-label="3D snack box. Tap to open it. Inside: mini idlis, banana coins, grated carrot, paneer cubes and a mashed banana dip. Drag to turn it, pinch to zoom."></canvas></div>
+            <div class="tb-tags" id="tb-tags"></div>
+            <button type="button" class="tb-open" id="tb-open">Tap to open!</button>
+            <p class="tb-hint">Tap a tag to see what’s in it · drag to turn</p>
+            <button type="button" class="tb-reset" id="tb-reset" hidden>Reset view</button>
+            <div class="tb-card" id="tb-card" role="region" aria-label="Compartment details" aria-live="polite">
+              <header>
+                <h3 class="tb-card-title"></h3>
+                <span class="tb-card-step" hidden></span>
+                <button type="button" data-prev aria-label="Previous compartment">‹</button>
+                <button type="button" data-next aria-label="Next compartment">›</button>
+                <button type="button" data-close aria-label="Back to the whole box">×</button>
+              </header>
+              <p class="tb-card-note"></p>
+              <ul class="tb-card-made" aria-label="Made with"></ul>
+            </div>
+          </section>
+          <section class="box-ingredients"><h2>Ingredients</h2><ul><li><span class="ingredient-icon ingredient-0"><img alt="" src="assets/box-db83c.png"></span>Banana</li><li><span class="ingredient-icon ingredient-1"><img alt="" src="assets/box-be3f4.png"></span>Paneer</li><li><span class="ingredient-icon ingredient-2"><img alt="" src="assets/box-4c496.png"></span>Ghee</li><li><span class="ingredient-icon ingredient-3"><img alt="" src="assets/box-700a0.png"></span>Moong Dal</li><li><span class="ingredient-icon ingredient-4"><img alt="" src="assets/box-e5413.png"></span>Grated carrot</li></ul></section><section class="box-nutrition"><h2>What <span data-name>Aarav</span> gets from this box</h2><div><article><p>calories <strong>180 kcal</strong></p><small>about 17% of daily energy needs</small></article><article><p>protein <strong>4g</strong></p><small>about 32% of daily need</small></article><article><p>healthy fats <strong>3g</strong></p><small>from ghee and paneer</small></article><article><p>carbohydrates <strong>20g</strong></p><small>from dal, banana, and carrot</small></article><article><p>iron <strong>1.5mg</strong></p><small>supports growth and focus</small></article><article><p>calcium <strong>60mg</strong></p><small>for strong bones and teeth</small></article><article><p>sugar <strong>4g natural</strong></p><small>from banana, 0g added</small></article><article><p>salt <strong>0mg added</strong></p><small>kept out on purpose</small></article></div></section><section class="box-friendly"><h2><span data-name>Aarav</span>’s saved preferences</h2><p>These are the dietary preferences you selected. This sample box has not been checked against them.</p><div><span>No dietary preferences added</span></div></section><section class="addons-section "><header><h2>Yummy Add-Ons</h2><button type="button">Explore All (12)</button></header><p>Tucked right into tomorrow's box</p><div class="addon-carousel" role="region" aria-label="Add-ons, scroll horizontally for more" tabindex="0"><article class="addon-card"><div class="addon-image addon-image-0"><img alt="Guava &amp; Chia" draggable="false" src="assets/dash-5e5ce.png"></div><h3 title="Guava &amp; Chia">Guava &amp; Chia</h3><p>Cold-pressed • 120ml</p><footer><strong>₹65</strong><button type="button" aria-label="Add Guava &amp; Chia item 1">+ Add</button></footer></article><article class="addon-card"><div class="addon-image addon-image-2"><img alt="Mango &amp; Passionfruit" draggable="false" src="assets/dash-e5e0c.png"></div><h3 title="Mango &amp; Passionfruit">Mango &amp; Passionfruit</h3><p>Fresh • 150ml</p><footer><strong>₹65</strong><button type="button" aria-label="Add Mango &amp; Passionfruit item 3">+ Add</button></footer></article><article class="addon-card"><div class="addon-image addon-image-1"><img alt="Guava &amp; Chia" draggable="false" src="assets/dash-24779.png"></div><h3 title="Guava &amp; Chia">Guava &amp; Chia</h3><p>Cold-pressed • 120ml</p><footer><strong>₹65</strong><button type="button" aria-label="Add Guava &amp; Chia item 2">+ Add</button></footer></article></div></section><section class="home-returns"><header><div><h2>Secure your next ₹100,</h2><p>get your box ready for return!</p></div><button><img alt="" src="assets/dash-e211a.svg">History</button></header><div class="return-days"><div class="return-day day-0"><span>Mon</span><div><span class="return-icon"><img alt="" src="assets/dash-bdbb6.svg"></span><strong>17</strong></div></div><div class="return-day day-1"><span>Tue</span><div><span class="return-icon"><img alt="" src="assets/dash-d3316.svg"></span><strong>18</strong></div></div><div class="return-day day-2"><span>Wed</span><div><span class="return-icon"><img alt="" src="assets/dash-bdbb6.svg"></span><strong>19</strong></div></div><div class="return-day day-3"><span>Thu</span><img alt="" class="return-today" src="assets/dash-9ebc5.svg"><div><span class="return-icon"><img alt="" src="assets/dash-52c3e.svg"></span><strong>20</strong></div></div><div class="return-day day-4"><span>Fri</span><div><span class="return-icon"><img alt="" src="assets/dash-52c3e.svg"></span><strong>21</strong></div></div><div class="return-day day-5"><span>Sat</span><div><span class="return-icon"><img alt="" src="assets/dash-52c3e.svg"></span><strong>22</strong></div></div></div><footer><span><strong>₹200</strong> secured so far</span><span><strong>2/3</strong> box returned</span></footer></section><section class="box-delivery"><h2>Delivery by 9 AM</h2><div><img alt="" src="assets/dash-f3e18.png"><div><strong>Swarushi Apartment</strong><p>42 Maple Ave, Ahmedabad</p></div><button>Change</button></div></section></div><footer class="box-actions" aria-label="Box management"><button type="button" class="box-change-items">Change items</button><button type="button" class="box-manage-plan">Pause or cancel subscription <span aria-hidden="true">›</span></button></footer></main>
+      </div></div>
+
+      <div class="controls">
+        <button type="button" id="tb-replay">Replay unboxing</button>
+      </div>
+
+      <div class="notes">
+        <h2 id="tb-h">Tomorrow’s box</h2>
+        <p>Your “Box for tomorrow” screen as it is in the app. The only change is the food photo, which is now the live 3D box packed with this menu.</p>
+        <dl>
+          <dt>Unboxing</dt><dd>It drops in and bounces. Closed, it shakes every few seconds like something inside wants out, with a “Tap to open!” bubble. Nothing inside shows until it’s opened.</dd>
+          <dt>Comes to life</dt><dd>On tap it unlatches, the lid flies up with confetti, the camera leans in, and each compartment pops full one after another.</dd>
+          <dt>What’s inside</dt><dd>Count tags sit right on the food. Tap one (or the food) to glide in: a card shows how much, and which of the menu’s ingredients it’s made from, using the app’s own ingredient icons. ‹ › steps through them.</dd>
+          <dt>Ingredients</dt><dd>Tap an ingredient further down the screen to jump up and see where it is in the box. The list looks the same as before.</dd>
+          <dt>Zoom to read</dt><dd>Pinch, or scroll once you’ve touched the box. It stays where you leave it; if it leaves the frame it glides back.</dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+
+  <footer>Prototype for review, not the final app. Portion amounts are placeholders.</footer>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+  import { mountOnboarding } from './motion/onboarding.js';
+  import { mountBoxStage } from './motion/box-stage.js';
+
+  const $ = (id) => document.getElementById(id);
+  const names = document.querySelectorAll('[data-name]');
+
+  mountOnboarding({
+    display: $('ob-display'),
+    stepper: $('ob-steps'),
+    onName: (n) => names.forEach((el) => { el.textContent = n; }),
+  });
+
+  // How much goes in each compartment. Counts drive the 3D pieces; tags and
+  // cards read the real number back from the box. `made` points at the
+  // menu's ingredients (same order as the Ingredients list below).
+  const INGREDIENTS = [...document.querySelectorAll('.box-ingredients li')].map((li) => ({ el: li, name: li.textContent.trim(), icon: li.querySelector('img').src }));
+  const PORTIONS = {
+    idli: { count: 16, size: 1.95, qty: (n) => n, short: 'mini idlis', name: 'mini idlis', note: 'Soft steamed moong dal and paneer bites.', made: [3, 1, 2], zoom: 0.74 },
+    banana: { count: 22, size: 1.5, qty: (n) => n, short: 'banana coins', name: 'banana coins', note: 'Thin slices of ripe banana. Nothing added.', made: [0], zoom: 0.46 },
+    carrot: { count: 900, size: 1.1, maxH: 0.24, qty: '3 tbsp', short: 'carrot', name: 'grated carrot', note: 'Finely grated so tiny teeth can manage.', made: [4], zoom: 0.46 },
+    paneer: { count: 14, size: 1.8, qty: (n) => n, short: 'paneer cubes', name: 'paneer cubes', note: 'Soft, fresh paneer. The protein star of the box.', made: [1], zoom: 0.46 },
+    spread: { qty: '1 tub', short: 'banana dip', name: 'of mashed banana dip', note: 'For dunking the idlis. No added sugar.', made: [0], zoom: 0.4 },
+  };
+  const ORDER = ['idli', 'banana', 'carrot', 'paneer', 'spread'];
+  // Where each ingredient shows up in the box.
+  const FIND = { Banana: 'banana', Paneer: 'paneer', Ghee: 'idli', 'Moong Dal': 'idli', 'Grated carrot': 'carrot' };
+
+  mountBoxStage({
+    hero: $('tb-hero'),
+    stage: $('tb-stage'),
+    canvas: $('tb-canvas'),
+    tags: $('tb-tags'),
+    cta: $('tb-open'),
+    card: $('tb-card'),
+    reset: $('tb-reset'),
+    portions: PORTIONS,
+    order: ORDER,
+    ingredients: INGREDIENTS,
+  }).then((stage) => {
+    $('tb-replay').addEventListener('click', () => stage.replay());
+    // Tap an ingredient: scroll up to the box (opening it if needed) and show where it is.
+    const scroller = $('tb-hero').closest('.box-scroll');
+    INGREDIENTS.forEach(({ el, name }) => {
+      const key = FIND[name];
+      if (!key) return;
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', `${name}: show where it is in the box`);
+      const go = () => {
+        const z = scroller.getBoundingClientRect().height / scroller.offsetHeight || 1;
+        const dy = ($('tb-hero').getBoundingClientRect().top - scroller.getBoundingClientRect().top) / z - 8;
+        scroller.scrollBy({ top: dy, behavior: 'smooth' });
+        const opened = $('tb-hero').classList.contains('opened');
+        if (!opened) stage.open();
+        setTimeout(() => stage.focus(key), opened ? 350 : 3000);
+      };
+      el.addEventListener('click', go);
+      el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+  });
+</script>
