@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Toddlers' Snack Box</title>
+  <meta name="description" content="An interactive 3D concept of the returnable Toddlers' Snack Box: a new colourway and a new thing to learn every morning.">
+  <meta name="theme-color" content="#FFF3E2">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-label="A 3D snack box. Drag to turn it, tap its parts to play."></canvas>
+
+  <header class="top">
+    <div class="brand">
+      <canvas id="brand-logo" width="612" height="212" role="img" aria-label="Toddlers' Snack Box logo"></canvas>
+      <p class="sub" id="subtitle">Aarav's box</p>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn" id="btn-lid" aria-pressed="false">Open lid</button>
+      <button type="button" class="btn icon" id="btn-sound" aria-pressed="true" aria-label="Sound on" title="Sound on">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 10v4h4l5 4V6L8 10H4Z"/><path class="on" d="M16 9.5a3.5 3.5 0 0 1 0 5M18.5 7a7 7 0 0 1 0 10"/><path class="off" d="m17 10 4 4m0-4-4 4"/></svg>
+      </button>
+      <button type="button" class="btn" id="btn-logo">Logo</button>
+    </div>
+  </header>
+
+  <nav class="explore" aria-label="Things to play with">
+    <p class="label">Play &amp; learn</p>
+    <div class="chips" id="features"></div>
+    <label class="name-field">
+      <span>Name on sticker</span>
+      <input id="name-input" type="text" value="Aarav" maxlength="12" autocomplete="off" spellcheck="false">
+    </label>
+  </nav>
+
+  <div class="bubble" id="bubble" role="status" aria-live="polite">
+    <div class="bubble-art" id="bubble-art"></div>
+    <div>
+      <p class="bubble-title" id="bubble-title"></p>
+      <p class="bubble-body" id="bubble-body"></p>
+    </div>
+  </div>
+
+  <footer class="days">
+    <p class="days-note">A new box every morning, and something new to learn</p>
+    <div class="day-row" id="days" role="tablist" aria-label="Day of the week"></div>
+  </footer>
+
+  <div class="tip" id="tip" hidden></div>
+
+  <dialog id="logo-dialog" aria-labelledby="logo-title">
+    <div class="dlg-head">
+      <h2 id="logo-title">Logo</h2>
+      <button type="button" class="btn icon" id="logo-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="logo-stage"><canvas id="logo-big" width="1224" height="424"></canvas></div>
+    <div class="logo-row">
+      <div class="logo-stage mark"><canvas id="logo-mark" width="400" height="400"></canvas></div>
+      <div class="logo-notes">
+        <p>A smiling lunchbox with a sprouting leaf on its handle: food that's healthy, and fun. The wordmark bounces like a toddler would write it.</p>
+        <div class="swatches" id="swatches"></div>
+        <div class="dl">
+          <button type="button" class="btn solid" id="dl-png">Download PNG</button>
+          <a class="btn" href="logo.svg" download="toddlers-snack-box-logo.svg">Download SVG</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="fallback" id="fallback" hidden>This needs WebGL to show the 3D box.</div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
