@@ -1,0 +1,38 @@
+.plan-screen { position: relative; width: 402px; height: 874px; overflow: clip; background: #cef2cf; color: #006519; font-family: 'Figtree Variable', sans-serif; }
+.plan-screen .status-bar { color: #010101; }
+.plan-header { position: absolute; top: 67px; left: 16px; right: 12px; display: flex; align-items: center; justify-content: space-between; color: #0a8f2b; font-size: 18px; line-height: 18px; font-weight: 600; }
+.plan-header p { margin: 0; }
+.plan-header button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.plan-character { position: absolute; left: 1px; top: 145px; width: 401px; height: 729px; pointer-events: none; }
+.plan-character img { position: absolute; max-width: none; }
+.plan-body { left: -39px; top: -.26px; }
+.plan-cheek { top: 100.21px; }
+.plan-cheek.left { left: 17px; }
+.plan-cheek.right { left: 310px; }
+.plan-eye { top: 50px; }
+.plan-eye.left { left: 70px; }
+.plan-eye.right { left: 210.43px; }
+.plan-mouth-position { position: absolute; left: 168.26px; top: 127.97px; width: 84.381px; height: 63.653px; display: flex; align-items: center; justify-content: center; }
+.plan-mouth-rotation { position: relative; flex: none; width: 76.926px; height: 45.826px; transform: rotate(-14.21deg) skewX(-1.85deg); }
+.plan-mouth-rotation img { top: -2.841px; left: -2.839px; }
+.plan-screen h1 { position: absolute; left: 25px; top: 360.8px; margin: 0; font-size: 32px; line-height: 38.4px; font-weight: 600; }
+.plan-options { position: absolute; top: 415px; left: 17px; width: 369px; display: flex; flex-direction: column; gap: 12px; }
+.plan-option { position: relative; display: flex; align-items: center; gap: 16px; width: 100%; padding: 16px; border: 2px solid #acf7ad; border-radius: 24px; background: #cef2cf; cursor: pointer; }
+.plan-option.selected { border: 2px solid #0a8f2b; box-shadow: 2px 4px 0 #0a8f2b; }
+.plan-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.plan-option:has(input:focus-visible) { outline: 2px solid #006519; outline-offset: 4px; }
+.plan-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.plan-name { color: #07601d; font-size: 16px; line-height: 19.2px; font-weight: 600; }
+.plan-description { color: #077021; font-size: 14px; line-height: 16.8px; font-weight: 400; }
+.plan-price { display: flex; flex: none; flex-direction: column; align-items: flex-end; gap: 4px; white-space: nowrap; min-width: 72px; text-align: right; font-variant-numeric: tabular-nums; }
+.plan-price del { color: #007030; font-size: 12px; line-height: 14.4px; font-weight: 500; }
+.plan-price strong { font-size: 18px; line-height: 21.6px; font-weight: 700; }
+.plan-deposit { padding: 12px 16px; border-radius: 24px; background: #85e087; }
+.plan-deposit h2 { margin: 0 0 4px; color: #07601d; font-size: 16px; line-height: 19.2px; font-weight: 600; }
+.plan-deposit p { margin: 0; font-size: 14px; line-height: 16.8px; font-weight: 400; }
+.plan-deposit strong { font-weight: 700; }
+.plan-checkout { position: absolute; left: 17px; top: 776px; width: 369px; height: 66px; padding: 16px; border: 0; border-radius: 16px; background: #0d9810; color: #ffebfb; box-shadow: 2px 4px 0 #026402; font: 600 24px/34px 'Figtree Variable', sans-serif; cursor: pointer; }
+.plan-checkout:hover { background: #0b8910; }
+.plan-checkout:active { transform: translateY(2px); box-shadow: 1px 2px 0 #026402; }
+.plan-screen button:focus-visible { outline: 2px solid #006519; outline-offset: 3px; }
+.plan-notice { position: absolute; top: 849px; left: 17px; width: 369px; margin: 0; text-align: center; font-size: 11px; line-height: 13px; }

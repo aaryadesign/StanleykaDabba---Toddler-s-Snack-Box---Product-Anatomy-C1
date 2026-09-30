@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Capa_1" clip-path="url(#clip0_0_143)">
+<path id="Vector" d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16Z" fill="#2E8A3D"/>
+<path id="Vector_2" d="M16 8C16 7.83406 15.9943 7.66947 15.9844 7.50606L12.4042 3.92591L3.50344 11.972L7.5165 15.985C7.6765 15.9946 7.83759 16 8 16C12.4183 16 16 12.4183 16 8Z" fill="#20602B"/>
+<path id="Vector_3" d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" fill="#5FC96F"/>
+<path id="Vector_4" d="M8 2C7.9995 2 7.999 2 7.9985 2V14C7.999 14 7.9995 14 8 14C11.3137 14 14 11.3137 14 8C14 4.68628 11.3137 2 8 2Z" fill="#5FC96F"/>
+<path id="Vector_5" d="M6.58625 11.6033L3.93059 8.94769L5.07966 7.79866L6.58625 9.30525L10.9203 4.97119L12.0694 6.12022L6.58625 11.6033Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_0_143">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

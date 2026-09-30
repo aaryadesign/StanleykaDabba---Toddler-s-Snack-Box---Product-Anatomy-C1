@@ -1,0 +1,22 @@
+.add-child-drawer { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 300ms ease, opacity 220ms ease; }
+.add-child-drawer[data-open=true] { grid-template-rows: 1fr; opacity: 1; }
+.add-child-drawer-inner { min-height: 0; overflow: hidden; }
+.add-child-form { margin-top: 12px; padding: 16px; display: flex; flex-direction: column; gap: 16px; background: #fff; border: 1px solid #d7eafe; border-radius: 24px; }
+.home-screen .add-child-intro h3 { color: #034a7c; font-size: 18px; line-height: 24px; font-weight: 600; }
+.home-screen .add-child-intro p { color: #52667a; font-size: 13px; line-height: 18px; margin-top: 4px; }
+.add-child-field { display: flex; flex-direction: column; gap: 8px; }
+.add-child-field label,.add-child-gender legend { color: #344c63; font-size: 14px; line-height: 20px; font-weight: 600; }
+.add-child-field input { width: 100%; min-width: 0; height: 48px; padding: 12px; background: #f6f9fc; border: 1px solid #c8d9ea; border-radius: 12px; color: #1d242b; font: 400 16px/22px 'Figtree Variable',sans-serif; }
+.add-child-field input[aria-invalid=true] { border-color: #cc2f24; }
+.home-screen .add-child-error { color: #b3261e; font-size: 12px; line-height: 16px; }
+.add-child-gender { margin: 0; padding: 0; border: 0; }
+.add-child-gender legend { margin-bottom: 8px; }
+.add-child-gender legend span { font-weight: 400; color: #728598; }
+.add-child-gender > div { display: flex; gap: 8px; }
+.add-child-gender label { flex: 1; display: flex; align-items: center; gap: 8px; min-height: 44px; border: 1px solid #c8d9ea; border-radius: 12px; padding: 10px 12px; font-size: 14px; cursor: pointer; }
+.add-child-gender label:has(:checked) { color: #0959ae; background: #ebf4ff; border-color: #0c74e4; }
+.add-child-gender input { accent-color: #0c74e4; width: 16px; height: 16px; }
+.add-child-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 4px; }
+.add-child-actions button { min-height: 44px; padding: 10px 20px; border-radius: 12px; }
+.add-child-actions button[type=submit] { background: #0c74e4; color: white; }
+@media(prefers-reduced-motion:reduce) { .add-child-drawer { transition-duration: 1ms; } }

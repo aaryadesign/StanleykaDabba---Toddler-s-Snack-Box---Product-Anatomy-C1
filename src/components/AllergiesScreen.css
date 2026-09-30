@@ -1,0 +1,36 @@
+.allergies-screen { position: relative; width: 402px; height: 874px; overflow: clip; background: #cef2cf; color: #087222; font-family: 'Figtree Variable', sans-serif; }
+.allergies-screen .status-bar { color: #010101; }
+.allergies-header { position: absolute; top: 67px; left: 16px; right: 12px; display: flex; align-items: center; justify-content: space-between; color: #0a8f2b; font-size: 18px; line-height: 18px; font-weight: 600; }
+.allergies-header p { margin: 0; }
+.allergies-header button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.allergies-character { position: absolute; left: -38.36px; top: 120px; max-width: none; pointer-events: none; }
+.allergies-screen h1 { position: absolute; left: 23.64px; top: 342px; width: 373px; margin: 0; font-size: 32px; line-height: 36.8px; font-weight: 600; }
+.allergies-options { position: absolute; left: 23.64px; top: 444px; width: 370px; display: flex; flex-wrap: wrap; gap: 8px; max-height: 108px; overflow: auto; }
+.allergy-chip { display: inline-flex; flex: none; align-items: center; gap: 8px; border: 1px solid #4da136; border-radius: 999px; padding: 4px 12px 4px 8px; background: transparent; color: #242021; font: 600 14px/16.8px 'Figtree Variable', sans-serif; cursor: pointer; }
+.allergy-chip.selected { padding-right: 8px; background: #cef2cf; border-color: #aeeaaf; }
+.allergy-chip-label { display: inline-flex; align-items: center; gap: 2px; }
+.allergy-nut { position: relative; display: inline-block; width: 16px; height: 16px; overflow: hidden; }
+.allergy-nut img { position: absolute; max-width: none; width: 121.43%; height: 121.43%; left: -10.91%; top: -10.71%; }
+.allergy-symbol { flex: none; transform: rotate(90deg); }
+.allergy-chip.add { gap: 2px; color: #218223; border: 1px dashed #218223; }
+.allergies-dislikes { position: absolute; top: 560px; left: 15.64px; width: 370px; padding: 12px; border-radius: 24px; background: #c2efc3; display: flex; flex-direction: column; gap: 12px; }
+.allergies-dislikes > div { padding-inline: 4px; }
+.allergies-dislikes label { display: block; font-size: 16px; line-height: 14.4px; font-weight: 600; }
+.allergies-dislikes p { margin: 8px 0 0; font-size: 12px; line-height: 14.4px; font-weight: 400; }
+.allergies-dislikes textarea { width: 346px; height: 92px; resize: none; border: 2px solid #c0e9c1; border-radius: 16px; padding: 8px 12px; background: #e7f9e7; color: #087222; font: 600 16px/16px 'Figtree Variable', sans-serif; }
+.allergies-dislikes textarea::placeholder { color: #c5dac5; opacity: 1; }
+.allergies-next { position: absolute; top: 768px; left: 15.64px; width: 370px; height: 66px; border: 0; border-radius: 16px; padding: 16px; background: #0d9810; color: #ffebfb; box-shadow: 2px 4px 0 #026402; font: 600 24px/34px 'Figtree Variable', sans-serif; cursor: pointer; }
+.allergies-next:hover { background: #0b8910; }
+.allergies-next:active { transform: translateY(2px); box-shadow: 1px 2px 0 #026402; }
+.allergies-notice { position: absolute; top: 736px; left: 24px; margin: 0; font-size: 13px; line-height: 18px; }
+.allergies-screen.is-adding .allergies-options { max-height: 64px; }
+.allergies-screen.is-adding .allergies-dislikes { top: 580px; }
+.allergy-custom { position: absolute; top: 520px; left: 23.64px; width: 354px; display: flex; align-items: center; gap: 8px; }
+.allergy-custom input { flex: 1; min-width: 0; height: 44px; padding: 10px 12px; border: 1px solid #4da136; border-radius: 14px; background: #e7f9e7; color: #087222; box-shadow: none; font: 500 16px/20px 'Figtree Variable', sans-serif; }
+.allergy-custom input::placeholder { color: #54815a; opacity: 1; }
+.allergy-custom input:focus-visible { border-color: #087222; outline: 2px solid #087222; outline-offset: 2px; box-shadow: none; }
+.allergy-custom button[type=submit] { height: 44px; padding: 0 16px; border: 0; border-radius: 14px; background: #0d9810; color: #fff; box-shadow: 0 2px 0 #026402; font: 600 14px/20px 'Figtree Variable', sans-serif; }
+.allergy-custom button[type=submit]:disabled { opacity: .45; box-shadow: none; }
+.allergy-custom button[type=button] { flex: none; width: 32px; height: 44px; border: 0; border-radius: 12px; background: transparent; color: #087222; font: 500 24px/24px 'Figtree Variable', sans-serif; cursor: pointer; }
+.allergy-custom button[type=button]:hover { background: #cef2cf; }
+.allergies-screen button:focus-visible, .allergies-screen textarea:focus-visible { outline: 2px solid #087222; outline-offset: 2px; }

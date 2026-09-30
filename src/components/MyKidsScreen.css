@@ -1,0 +1,12 @@
+.mykids-screen { position: absolute; inset: 0; z-index: 5; background: #f1f1f1; color: #1d242b; }
+.home-screen .mykids-screen .status-bar { background: #f1f1f1; color: #010101; }
+.mykids-screen .status-bar img { width: 66.661px; height: 11.336px; }
+.mykids-header { position: absolute; top: 43px; left: 0; right: 0; height: 52px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; }
+.mykids-header h1 { font-size: 20px; line-height: 24px; font-weight: 600; }
+.mykids-header button { display: grid; place-items: center; width: 36px; height: 36px; background: #f6f7f9; border-radius: 50%; }
+.mykids-scroll { position: absolute; inset: 95px 0 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; padding: 16px 12px 112px; display: flex; flex-direction: column; gap: 16px; }
+.mykids-scroll > * { flex: none; }
+.mykids-banner { position: relative; height: 131px; border-radius: 24px; overflow: hidden; background: #aae3b4; }
+.mykids-banner h2 { position: absolute; top: 50%; left: 16px; transform: translateY(-50%); width: 190px; font-size: 20px; line-height: 24px; font-weight: 600; color: #2e8a3d; }
+.mykids-banner > img { position: absolute; top: 0; right: -12.16px; width: 168.082px; height: 142px; object-fit: cover; }
+.mykids-scroll .home-kid { margin-top: 0; }

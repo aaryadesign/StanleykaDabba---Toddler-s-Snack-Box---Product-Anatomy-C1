@@ -1,0 +1,29 @@
+.meal-screen { position: relative; width: 402px; height: 874px; overflow: clip; background: #c8e3f9; color: #105893; font-family: 'Figtree Variable', sans-serif; }
+.meal-screen .status-bar { color: #010101; }
+.meal-header { position: absolute; top: 67px; left: 16px; right: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 18px; line-height: 18px; font-weight: 600; }
+.meal-header p { margin: 0; }
+.meal-header button { border: 0; padding: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.meal-character { position: absolute; top: 107px; left: 1px; width: 401px; height: 773px; pointer-events: none; }
+.meal-character img { position: absolute; max-width: none; }
+.meal-body { left: -884.676px; top: 6.416px; }
+.meal-cheek.left { left: 107px; top: 96px; }
+.meal-cheek.right { left: 225px; top: 99px; }
+.meal-eye.left { left: 139.37px; top: 52px; }
+.meal-eye.right { left: 200.38px; top: 52px; }
+.meal-mouth-position { position: absolute; left: 155px; top: 111px; width: 81.98px; height: 52.194px; display: flex; justify-content: center; align-items: center; }
+.meal-mouth-rotation { position: relative; flex: none; width: 40.837px; height: 76.585px; transform: rotate(-81.1deg); }
+.meal-mouth-rotation img { left: 0; top: 8.1946px; }
+.meal-screen h1 { position: absolute; left: 25px; top: 337.6px; width: 369px; margin: 0; font-size: 32px; font-weight: 600; line-height: 38.4px; }
+.meal-description { position: absolute; left: 25px; top: 426.2px; width: 369px; margin: 0; color: #034984; font-size: 14px; line-height: 16.8px; font-weight: 400; }
+.meal-description strong { font-weight: 700; }
+.meal-card { position: absolute; top: 497px; left: 17px; width: 369px; height: 251px; border-radius: 24px; overflow: clip; background: #cbe4f9; }
+.meal-card h2 { position: absolute; top: 16px; left: 16px; width: 159px; margin: 0; font-size: 20px; line-height: 24px; font-weight: 600; }
+.meal-card > p { position: absolute; top: 18.4px; left: 189px; width: 165px; margin: 0; color: #034984; font-size: 12px; line-height: 14.4px; }
+.meal-box { position: absolute; bottom: -113px; left: -100.5px; width: 306px; height: 306px; max-width: none; object-fit: cover; }
+.meal-card ul { position: absolute; top: 85px; left: 189px; width: 169px; display: flex; flex-wrap: wrap; gap: 4px; list-style: none; padding: 0; margin: 0; }
+.meal-card li { border: 1px solid #53aaf1; padding: 4px 8px; border-radius: 999px; background: #84c2f7; color: #054d88; font-size: 12px; font-weight: 600; line-height: 14.4px; white-space: nowrap; }
+.meal-subscribe { position: absolute; top: 768px; left: 13px; width: 377px; height: 66px; border: 0; padding: 16px; border-radius: 16px; background: #146eb8; color: #edf6fd; box-shadow: 2px 4px 0 #0c426e; font: 600 20px/34px 'Figtree Variable', sans-serif; cursor: pointer; }
+.meal-subscribe:hover { background: #1263a6; }
+.meal-subscribe:active { transform: translateY(2px); box-shadow: 1px 2px 0 #0c426e; }
+.meal-screen button:focus-visible { outline: 2px solid #034984; outline-offset: 3px; }
+.meal-notice { position: absolute; top: 843px; left: 17px; width: 369px; margin: 0; color: #034984; text-align: center; font-size: 11px; line-height: 13px; }

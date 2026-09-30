@@ -1,0 +1,73 @@
+.child-screen { position: relative; width: 402px; height: 874px; overflow: clip; background: #fec3f3; color: #8b0472; font-family: 'Figtree Variable', sans-serif; }
+.child-screen .status-bar { color: #010101; }
+.child-header { position: absolute; top: 67px; left: 16px; right: 12px; display: flex; align-items: center; justify-content: space-between; color: #e406bb; font-size: 18px; line-height: 18px; font-weight: 600; }
+.child-header p { margin: 0; }
+.child-header button { padding: 0; background: none; border: 0; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.child-art { position: absolute; inset: 152px 0 auto; height: 722px; pointer-events: none; }
+.child-art img { position: absolute; max-width: none; }
+.child-body { left: -35.36px; top: -33px; }
+.child-cheek { top: 91.21px; }
+.child-cheek.left { left: 2.55px; }
+.child-cheek.right { left: 312.44px; }
+.child-eye { top: 41px; }
+.child-eye.left { left: 67.64px; }
+.child-eye.right { left: 200.64px; }
+.child-mouth-position { position: absolute; left: 161.81px; top: 118.97px; width: 84.381px; height: 63.653px; display: flex; align-items: center; justify-content: center; }
+.child-mouth-rotation { position: relative; width: 76.926px; height: 45.826px; transform: rotate(-14.21deg) skewX(-1.85deg); }
+.child-mouth-rotation img { left: -2.84px; top: -2.84px; }
+.child-screen h1 { position: absolute; top: 337.6px; left: 24px; width: 329px; margin: 0; font-size: 32px; font-weight: 600; line-height: 38.4px; }
+.child-form { position: absolute; inset: 454px 16px 40px; }
+.child-fields { display: flex; flex-direction: column; gap: 10.2px; }
+.child-field { display: flex; flex-direction: column; gap: 8px; }
+.child-field label { padding-inline: 8px; font-size: 14px; font-weight: 500; line-height: 16.8px; }
+.child-field input:not([type=date]) { height: 60px; border: 2px solid #fd9bcb; border-radius: 16px; background: #ffebfb; padding: 16px; font-family: inherit; font-size: 20px; font-weight: 600; line-height: 24px; color: #8b0472; box-shadow: none; }
+.child-field input::placeholder { color: #97a8b9; opacity: 1; }
+.child-field input:focus-visible { outline: 2px solid #c804a4; outline-offset: 1px; }
+.child-field input[aria-invalid=true] { border-color: #b30c00; }
+.child-date-control { position: relative; }
+.child-date-control input:not([type=date]) { padding-right: 64px; }
+.birthday-picker { position: absolute; left: 319px; top: 11px; width: 31px; height: 33px; }
+.birthday-icon { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.birthday-icon img { position: absolute; width: 171.43%; height: 160%; max-width: none; left: -35.71%; top: -20%; }
+.birthday-picker input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+.birthday-picker input::-webkit-calendar-picker-indicator { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; cursor: pointer; }
+.birthday-picker:focus-within { outline: 2px solid #c804a4; border-radius: 4px; }
+.child-error { margin: -4px 8px 0; font-size: 12px; line-height: 14px; color: #b30c00; }
+.child-notice { margin: 8px 8px 0; font-size: 13px; line-height: 16px; }
+.child-actions { position: absolute; bottom: 0; left: 0; right: 0; display: flex; flex-direction: column; gap: 12px; }
+.child-actions button { width: 100%; height: 66px; padding: 16px; border: 0; border-radius: 16px; font-family: inherit; font-size: 24px; font-weight: 600; line-height: 34px; cursor: pointer; }
+.child-add { background: #fec3f3; color: #c804a4; box-shadow: 2px 4px 0 #cc02a8; }
+.child-add:hover { background: #ffcff6; }
+.child-next { background: #c804a4; color: #ffebfb; box-shadow: 2px 4px 0 #640252; }
+.child-next:hover { background: #b70497; }
+.child-actions button:active { transform: translateY(2px); }
+.birthday-trigger { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; border: 0; cursor: pointer; }
+.birthday-calendar { position: absolute; z-index: 5; bottom: 68px; right: 0; width: 310px; padding: 12px; border: 2px solid #fd9bcb; border-radius: 16px; background: #ffebfb; box-shadow: 0 8px 24px #8b047233; }
+.calendar-header { display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-bottom: 8px; }
+.calendar-header button { background: #fec3f3; color: #8b0472; }
+.child-field .calendar-header input:not([type=date]) { width: 78px; height: 32px; padding: 4px; border-radius: 6px; font-size: 15px; }
+.calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center; font-size: 14px; }
+.calendar-days button { height: 28px; border-radius: 6px; cursor: pointer; }
+.calendar-days button:hover, .calendar-days button:focus-visible { background: #fec3f3; outline: 1px solid #c804a4; }
+.calendar-days button:disabled { opacity: .3; cursor: default; }
+/* Keep the added profile choice inside the phone without overlapping actions. */
+.child-form { inset: 428px 16px 24px; }
+.child-field input:not([type=date]) { height: 48px; padding: 12px 16px; font-size: 18px; }
+.birthday-picker { top: 7px; height: 30px; }
+.child-actions { position: static; margin-top: auto; gap: 10px; }
+.child-form { display: flex; flex-direction: column; }
+.child-actions button { height: 50px; padding: 10px 16px; font-size: 20px; line-height: 28px; }
+.child-notice { min-height: 16px; margin: 8px 8px; }
+.child-gender { border: 0; padding: 0; margin: 2px 0 0; min-width: 0; }
+.child-gender legend { padding: 0 8px; margin-bottom: 8px; font-size: 14px; line-height: 17px; font-weight: 500; }
+.child-gender legend span { font-size: 12px; font-weight: 400; }
+.child-gender > div { display: flex; gap: 10px; }
+.child-gender label { display: flex; flex: 1; align-items: center; gap: 10px; height: 44px; padding: 10px 14px; border: 2px solid #fd9bcb; border-radius: 14px; background: #ffebfb; color: #8b0472; font-size: 16px; font-weight: 600; cursor: pointer; }
+.child-gender label:has(input:checked) { border-color: #c804a4; background: #fbd8f4; }
+.child-gender input { appearance: none; flex: none; width: 18px; height: 18px; margin: 0; border: 1.5px solid #c804a4; border-radius: 50%; background: #ffebfb; }
+.child-gender input:checked { border: 5px solid #c804a4; }
+.child-gender label:has(input:focus-visible) { outline: 2px solid #8b0472; outline-offset: 3px; }
+.added-children { display: flex; flex: none; gap: 8px; margin: 0 0 12px; padding: 2px; list-style: none; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #c804a4 transparent; }
+.added-child-pill { display: inline-flex; flex: none; align-items: center; gap: 6px; max-width: 240px; height: 30px; padding: 4px 12px 4px 6px; border: 1px solid #e77bd4; border-radius: 999px; background: #ffebfb; color: #8b0472; font: 600 13px/18px 'Figtree Variable', sans-serif; }
+.added-child-pill > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.added-child-check { display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: #c804a4; color: white; font-size: 12px; }

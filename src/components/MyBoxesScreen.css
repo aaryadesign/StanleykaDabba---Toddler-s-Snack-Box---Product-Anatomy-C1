@@ -1,0 +1,37 @@
+.myboxes-screen { position: absolute; inset: 0; background: #f1f1f1; color: #1d242b; z-index: 5; }
+.myboxes-screen .status-bar { background: #f1f1f1; color: #010101; }
+.myboxes-screen .status-bar img { width: 66.661px; height: 11.336px; }
+.myboxes-header { position: absolute; top: 43px; left: 0; right: 0; height: 52px; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; }
+.myboxes-header h1 { font-size: 20px; line-height: 24px; font-weight: 600; }
+.myboxes-header > button { display: grid; place-items: center; width: 36px; height: 36px; background: #f6f7f9; border-radius: 50%; }
+.myboxes-scroll { position: absolute; inset: 95px 0 0; overflow-y: auto; padding: 16px 12px 112px; display: flex; flex-direction: column; gap: 16px; scrollbar-width: none; overscroll-behavior: contain; }
+.myboxes-scroll > * { flex: none; }
+.myboxes-today { background: white; border-radius: 24px; padding: 12px; display: flex; flex-direction: column; gap: 12px; }
+.myboxes-today > header { display: flex; justify-content: space-between; align-items: center; padding: 0 8px; }
+.myboxes-today h2 { font-size: 16px; line-height: 20px; font-weight: 600; }
+.myboxes-today > header > span { font-size: 16px; color: #008d16; font-weight: 500; }
+.myboxes-today .current-meal { height: 204px; }
+.current-meal .tomorrow-food { top: 24px; }
+.current-meal h3 { top: 12px; }
+.current-meal > p { top: 52px; }
+.current-meal ul { top: 104px; }
+.myboxes-divider { width: 354px; height: 1px; }
+.myboxes-today .driver-info { color: #52667a; }
+.myboxes-today .driver-distance { color: #f09800; font-size: 11px; }
+.myboxes-today .driver-actions button { width: 48px; height: 48px; border: 1px solid #0c74e4; background: #ebf4ff; }
+.myboxes-today .driver-row { gap: 12px; }
+.myboxes-today .driver-info > div { gap: 8px; font-size: 16px; }
+.myboxes-today .driver-actions { gap: 6px; }
+.myboxes-scroll .home-tomorrow { margin: 0; }
+.myboxes-history { padding: 12px; background: white; border-radius: 24px; }
+.myboxes-history .myboxes-date { color: #97a8b9; font-size: 12px; line-height: 16px; letter-spacing: .4px; margin: 0 4px 12px; font-weight: 600; }
+.myboxes-history > div { display: flex; gap: 8px; }
+.history-food { flex: none; position: relative; width: 80px; height: 80px; background: #f6f7f9; border-radius: 24px; overflow: hidden; }
+.history-food > div { position: absolute; width: 69.465px; height: 58.75px; left: 5px; top: 10px; overflow: hidden; }
+.history-food img { position: absolute; width: 122.87%; height: 145.28%; left: -11.17%; top: -22.01%; }
+.myboxes-history h2 { font-size: 14px; line-height: 17px; font-weight: 700; color: #52667a; }
+.myboxes-history h2 + p { font-size: 12px; line-height: 14.4px; margin-top: 4px; }
+.myboxes-history button { font-size: 12px; line-height: 16px; color: #0c74e4; font-weight: 600; margin-top: 4px; min-height: 28px; }
+.home-screen .myboxes-screen .status-bar { background: #f1f1f1; color: #010101; }
+
+

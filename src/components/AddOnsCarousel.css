@@ -1,0 +1,24 @@
+.addons-section header { display: flex; align-items: center; justify-content: space-between; height: 22.5px; }
+.addons-section h2 { font-size: 17px; line-height: 24px; font-weight: 600; color: #161d18; }
+.addons-section header button { color: #2d6aed; font-family: 'Plus Jakarta Sans Variable', sans-serif; font-size: 11px; line-height: 16.5px; font-weight: 800; }
+.addons-section > p { color: #435044; font-size: 12px; line-height: 16px; letter-spacing: .4px; }
+.addon-carousel { display: flex; gap: 10px; overflow-x: auto; margin-top: 8px; padding: 8px 0; scrollbar-width: none; }
+.addon-card { flex: none; width: 140px; height: 179px; padding: 10px; background: #f6f7f9; border: 1px solid #eceff3; border-radius: 18px; }
+.addon-image { position: relative; width: 118px; height: 80px; overflow: clip; border-radius: 12px; background: #dce6db; }
+.addon-image img { width: 120px; height: 80px; object-fit: cover; }
+.addon-image-0 img { position: absolute; width: 124.42%; left: -12.21%; }
+.addons-section .addon-card h3 { margin-top: 8px; overflow: hidden; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .1px; white-space: nowrap; }
+.addons-section .addon-card > p { margin-top: 2px; color: #435044; font-size: 11px; line-height: 14px; letter-spacing: .4px; white-space: nowrap; }
+.addon-card footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #d0dad066; margin-top: 12px; padding-top: 6px; font-size: 13px; line-height: 18px; }
+.addon-card footer strong { font-weight: 600; }
+.addon-card footer > button, .addon-quantity { color: white; background: #2d6aed; border-radius: 999px; height: 24px; padding: 2px 8px; font-weight: 600; }
+.addon-quantity { display: flex; gap: 7px; padding: 2px 5px; }
+.addon-quantity button { min-width: 16px; }
+.addons-section .addon-notice { font-size: 11px; letter-spacing: 0; }
+
+.addons-section { min-width: 0; max-width: 100%; }
+.addon-carousel { overscroll-behavior-x: contain; cursor: grab; user-select: none; }
+.addon-carousel.is-dragging { cursor: grabbing; }
+.addon-carousel::-webkit-scrollbar { display: none; }
+.addon-card { scroll-snap-align: start; }
+.addon-carousel:focus-visible { outline: 2px solid #0c74e4; outline-offset: 2px; border-radius: 18px; }

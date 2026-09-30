@@ -1,0 +1,32 @@
+.location-screen { position: relative; width: 402px; height: 874px; overflow: clip; background: #c5cffc; color: #071a73; font-family: 'Figtree Variable', sans-serif; }
+.location-screen .status-bar { color: #010101; }
+.location-header { position: absolute; top: 67px; left: 16px; right: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 18px; line-height: 18px; font-weight: 600; }
+.location-header p { margin: 0; }
+.location-header button { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.location-header button:focus-visible { outline: 2px solid #0930e0; outline-offset: 3px; }
+.location-art { position: absolute; top: 148px; left: 0; width: 402px; height: 726px; pointer-events: none; }
+.location-art img { position: absolute; max-width: none; }
+.location-body { left: -87px; top: -29px; }
+.location-cheek { top: 92px; }
+.location-cheek.left { left: 41px; }
+.location-cheek.right { left: 279px; }
+.location-eye { top: 0; }
+.location-eye.left { left: 97px; }
+.location-eye.right { left: 209px; }
+.location-mouth { left: 189px; top: 114px; }
+.location-copy { position: absolute; top: 368.8px; left: 24px; right: 9px; }
+.location-copy h1 { margin: 0; font-size: 32px; line-height: 38.4px; font-weight: 600; }
+.location-copy p { margin: 7.9px 0 0; font-size: 14px; line-height: 16.8px; }
+.location-form { position: absolute; inset: 472px 16px 40px; }
+.location-field { display: flex; flex-direction: column; gap: 8px; }
+.location-field label { padding-inline: 8px; font-size: 14px; font-weight: 500; line-height: 16.8px; }
+.location-field input { height: 60px; border: 2px solid #6075da; border-radius: 16px; padding: 16px; background: #e2e7fd; color: #071a73; font-family: inherit; font-size: 20px; line-height: 24px; font-weight: 600; box-shadow: none; }
+.location-field input::placeholder { color: #9db6ce; opacity: 1; }
+.location-field input:focus-visible { outline: 2px solid #0930e0; outline-offset: 2px; box-shadow: none; }
+.location-field input[aria-invalid=true] { border-color: #b30c00; }
+.location-error, .location-notice { margin: 0 8px; font-size: 13px; line-height: 18px; }
+.location-error { color: #8b0b00; }
+.location-notice { margin-top: 12px; }
+.location-next { position: absolute; bottom: 0; width: 370px; height: 66px; border: 0; border-radius: 16px; padding: 16px; background: #0930e0; color: #efebff; box-shadow: 2px 4px 0 #020a64; font-family: inherit; font-size: 24px; font-weight: 600; line-height: 34px; cursor: pointer; }
+.location-next:hover { background: #082bc9; }
+.location-next:active { transform: translateY(2px); box-shadow: 1px 2px 0 #020a64; }
